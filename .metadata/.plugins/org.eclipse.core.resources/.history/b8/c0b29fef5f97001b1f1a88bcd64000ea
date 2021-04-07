@@ -1,0 +1,10 @@
+let index ={
+	
+	init:function(){
+		$(".deleteOk").on("click",()=>{
+			var no = $(this);
+			console.log(no);
+		});
+	}
+}
+index.init()

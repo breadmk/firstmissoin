@@ -4,7 +4,7 @@
 <%@ include file="../layout/header.jsp" %>
 <div class="container">
   <h2>게시글 등록하기</h2>
-  <form action="updateOk" method="post">
+  <form action="/board/updateOk" method="post">
   	<input type="hidden" value="${dto.no}" name="no">
     <div class="form-group">
       <label for="title">제목</label>
@@ -16,7 +16,7 @@
 	</div>
     <div class="form-group">
       <label for="name">작성자</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="${dto.name}">
+      <input type="text" class="form-control" id="name" placeholder="Enter name" readonly="readonly" name="name" value="${dto.name}">
       <label for="pwd">비밀번호</label>
       <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
       <c:if test="${param.chk!=null}">

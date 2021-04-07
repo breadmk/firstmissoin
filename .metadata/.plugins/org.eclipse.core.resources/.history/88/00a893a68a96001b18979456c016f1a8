@@ -1,0 +1,7 @@
+$(function(){
+	
+	$(".contentRow").click(function(){
+		alert("dd");
+	});
+	
+})

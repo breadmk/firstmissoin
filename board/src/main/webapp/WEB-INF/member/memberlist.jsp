@@ -14,6 +14,8 @@
         <th>이메일</th>
         <th>주소</th>
         <th>작성글수</th>
+        <th>탈퇴처리</th>
+        <th>가입축하메일</th>
       </tr>
     </thead>
     <tbody>
@@ -25,9 +27,17 @@
 		<td>${member.email}</td>
 		<td>${member.addr}</td>
 		<td>${member.count}</td>
+		<td><button type="button" class="btn btn-danger deleteOk">탈퇴</button></td>
+		<c:if test="${member.state == 1}">
+		<td><button type="button" class="btn btn-dark email" disabled="disabled">발송완료</button></td>
+      	</c:if>
+      	<c:if test="${member.state == 0}">
+		<td><button type="button" class="btn btn-info email">발송</button></td>
+      	</c:if>
       </tr>
      </c:forEach>
     </tbody>
   </table>
 </div>
+<script src="/static/js/member.js"></script>
 <%@ include file="../layout/footer.jsp" %>

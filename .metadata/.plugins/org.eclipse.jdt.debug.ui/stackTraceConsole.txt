@@ -1,0 +1,7 @@
+	@RequestMapping("/board/content")
+	public String content(HttpServletRequest request,Model model) {
+		int no = Integer.parseInt(request.getParameter("no"));
+		BoardDTO dto = boardMapper.getOne(no);
+		model.addAttribute("dto",dto);
+		return "/board/content";
+	}

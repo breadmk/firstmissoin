@@ -29,7 +29,7 @@ let index = {
 		}).fail(function(error){
 			console.log(data);
 			console.log(error);
-			alert("가입실패");
+			alert("중복된 아이디 / 중복된 이름 입니다.");
 		});
 	},
 	addrs: function() {

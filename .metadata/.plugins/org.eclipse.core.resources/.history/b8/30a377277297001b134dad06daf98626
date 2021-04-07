@@ -1,0 +1,17 @@
+package kr.co.board.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+@Mapper
+public interface AdminMemberMapper {
+	
+    //메일발송
+	@Select("select email from member where no=#{param1}")
+	String getEmail(int no);
+	
+	//메일발송 완료
+	@Update("update member set state=1 where no=#{param1}")
+	int updateState(int no);
+}

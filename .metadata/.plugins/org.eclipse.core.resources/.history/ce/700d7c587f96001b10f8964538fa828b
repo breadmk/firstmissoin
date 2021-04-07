@@ -1,0 +1,14 @@
+package kr.co.board.mapper;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import kr.co.board.dto.BoardDTO;
+
+@Mapper
+public interface BoardMapper {
+
+	@Insert("insert into board(no,title,name,content,pwd) values(s_board.nextval,#{dto.title,jdbcType=VARCHAR},#{dto.name},#{dto.content},#{dto.pwd})")
+	int register(@Param("dto") BoardDTO dto);
+}

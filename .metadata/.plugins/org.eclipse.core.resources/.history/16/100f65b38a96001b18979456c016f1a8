@@ -1,0 +1,8 @@
+$(function(){
+	
+	$(".contentRow").click(function(){
+		var no = $("#no").text();
+		alert(no);
+	});
+	
+})

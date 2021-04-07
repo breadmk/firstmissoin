@@ -1,0 +1,14 @@
+
+function list(){
+	location.href="/list";
+}
+
+function update(){
+	var no = $("#no").text();
+	location.href="/board/update?no="+no;
+}
+
+function deleteOk(){
+	var no = $("#no").text();
+	location.href="/board/deleteOk?no="+no;
+}

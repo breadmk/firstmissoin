@@ -17,7 +17,7 @@
         <th>Email</th>
         <td colspan="2">${dto.email}${pwdOk}</td>
       </tr>
-       <tr>
+      	<tr>
         <th>기존비밀번호</th>
         <td><input type="password" class="form-control" id="pwd" name="pwd"></td>
       	<td><button id="chk">비밀번호확인</button></td>

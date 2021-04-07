@@ -1,0 +1,20 @@
+let index={
+	
+	init:function(){
+		$("#chk").on("click",()=>{
+			this.chk();
+		});
+	},
+	chk:function(){
+		
+		$.ajax({
+			type:"post",
+			url:"/member/pwdChk",
+			data:{pwd:$("#pwd").val()},
+			contentType:"application/json; charset=utf-8",
+		}).done(function(res){
+			alert(res);
+		});
+	}	
+}
+index.init();

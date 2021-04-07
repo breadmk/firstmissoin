@@ -1,0 +1,8 @@
+index();
+alert("d");
+function index(){
+	$(".contentRow").click(function(){
+		alert("dd");
+	})
+}
+

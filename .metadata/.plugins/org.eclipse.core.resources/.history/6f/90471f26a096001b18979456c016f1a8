@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp" %>
+<div class="container">
+  <h2>사용자 상세 정보</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>UserId</th>
+        <td>ddd</td>
+      </tr>
+       <tr>
+        <th>Username</th>
+        <td>ddd</td>
+      </tr>
+       <tr>
+        <th>Email</th>
+        <td>ddd</td>
+      </tr>
+       <tr>
+        <th>UserId</th>
+        <td>ddd</td>
+      </tr>
+      
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<%@ include file="../layout/footer.jsp" %>

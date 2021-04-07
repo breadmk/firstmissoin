@@ -1,0 +1,4 @@
+function deleteOk(){
+	
+	var dd = $(".deleteOk").parents('tr').find("#no").text();
+}

@@ -1,0 +1,5 @@
+package kr.co.board.api;
+
+public class MailSend {
+
+}

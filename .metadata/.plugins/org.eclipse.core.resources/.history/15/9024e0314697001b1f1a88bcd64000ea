@@ -1,0 +1,14 @@
+package kr.co.board.dto;
+
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class MemberBoardDTO {
+	
+	private int no;
+	private String name,userid,username,pwd,email,zipcode,addr,addr_detail,count;
+}

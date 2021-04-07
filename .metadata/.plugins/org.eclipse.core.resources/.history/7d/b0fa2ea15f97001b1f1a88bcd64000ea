@@ -1,0 +1,10 @@
+let index ={
+	
+	init:function(){
+		$(".deleteOk").on("click",()=>{
+			let no = $(this).parents('tr').find("#no").text();
+			console.log(no);
+		});
+	}
+}
+index.init()

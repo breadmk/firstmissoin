@@ -1,0 +1,15 @@
+package kr.co.board.mapper;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import kr.co.board.dto.MemberDTO;
+
+@Mapper
+public interface MemberMapper {
+
+	@Insert("insert into member(no,userid,username,pwd,email) "
+			+ " values(s_member.nextval,#{dto.userid},#{dto.username},#{dto.pwd},#{dto.email})")
+	int registerMember(@Param("dto")MemberDTO dto);
+}

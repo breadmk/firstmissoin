@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp" %>
+<div class="container">
+  <h2>사용자 상세 정보</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>UserId</th>
+        <td>${dto.userid}</td>
+      </tr>
+       <tr>
+        <th>Username</th>
+        <td>${dto.username}</td>
+      </tr>
+       <tr>
+        <th>Email</th>
+        <td>${dto.email}</td>
+      </tr>
+       <tr>
+        <th>Password</th>
+        <td>*************</td>
+      </tr>
+    </thead>
+  </table>
+</div>
+<%@ include file="../layout/footer.jsp" %>

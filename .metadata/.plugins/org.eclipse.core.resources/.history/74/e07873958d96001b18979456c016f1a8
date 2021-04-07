@@ -1,0 +1,12 @@
+
+function list(){
+	location.href="/list";
+}
+
+function update(){
+	location.href="/board/update";
+}
+
+function deleteOk(){
+	location.href="/board/deleteOk";
+}

@@ -1,0 +1,11 @@
+package kr.co.board.dto;
+
+import com.fasterxml.jackson.databind.ser.std.StdArraySerializers.IntArraySerializer;
+
+import lombok.Data;
+
+@Data
+public class BoardDTO {
+
+	private int no;
+}

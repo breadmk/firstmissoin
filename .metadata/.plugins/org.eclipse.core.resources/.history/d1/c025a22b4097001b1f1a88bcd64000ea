@@ -1,0 +1,113 @@
+package kr.co.board.controller;
+
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import kr.co.board.dto.MemberDTO;
+import kr.co.board.mapper.MemberMapper;
+
+@Controller
+public class MemberController {
+	
+	@Autowired
+	MemberMapper memberMapper;
+	
+	@RequestMapping("/member/admin")
+	public String admin() {
+	   List<MemberDTO> list = memberMapper.getAll();
+		return "/member/admin";
+	}
+	
+	@RequestMapping("/member/pwdChkOk")
+	public void pwdChkOk(@RequestBody String pwd,PrintWriter out,HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		String pwdOk = (String) session.getAttribute("pwdOk");
+		if(pwdOk!=null) {
+			memberMapper.updatePwd(pwd, userid);
+			out.print("비밀번호가 변경되었습니다");
+		}else {
+			out.print("기존비밀번호를 확인하세요");
+		}
+	}
+	
+	@RequestMapping("/member/pwdChk")
+	public void pwdChk(@RequestBody String pwd,PrintWriter out,HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		int count = memberMapper.login(userid, pwd);
+		if(count==1) {
+			out.write("비밀번호가 일치합니다.");
+			session.setAttribute("pwdOk", "1");
+		}else {
+			out.write("비밀번호가 틀립니다.");
+		}
+	}
+	
+	@RequestMapping("/member/userdetail")
+	public String userDetail(HttpSession session,Model model) {
+		String userid = (String) session.getAttribute("userid");
+		MemberDTO dto = memberMapper.getOne(userid);
+		model.addAttribute("dto",dto);
+		return "/member/userdetail";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/member/login";
+	}
+
+	@RequestMapping("/member/login")
+	public String login() {
+		return "/member/login";
+	}
+	
+	@RequestMapping("/member/loginOk")
+	public String loginOk(HttpServletRequest request,HttpSession session) {
+		String userid = request.getParameter("userid");
+		String pwd = request.getParameter("pwd");
+		int count = memberMapper.login(userid, pwd);
+		String username = memberMapper.getUsername(userid);
+		if(count==1) {
+			session.setAttribute("username",username);
+			session.setAttribute("userid",userid);
+			return "redirect:/list";
+		}else {
+			return "redirect:/member/login?chk=1";
+		}
+	}
+	
+	@ResponseBody
+	@PostMapping("/member/joinOk")
+	public void joinOk(@RequestBody MemberDTO dto, PrintWriter out) {
+		memberMapper.registerMember(dto);
+		out.print("suesss");
+	}
+	
+	@RequestMapping("/member/join")
+	public String join() {
+		return "/member/join";
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+

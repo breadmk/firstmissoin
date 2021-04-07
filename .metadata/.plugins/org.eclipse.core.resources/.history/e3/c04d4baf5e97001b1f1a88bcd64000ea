@@ -1,0 +1,6 @@
+function deleteOk(){
+	
+	$(this).click(function(){
+		alert("dd");
+	});
+}

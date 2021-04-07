@@ -1,0 +1,8 @@
+let index ={
+	
+	init:function(){
+		$(".deleteOk").on("click",()=>{
+			alert("dd");
+		});
+	}
+}

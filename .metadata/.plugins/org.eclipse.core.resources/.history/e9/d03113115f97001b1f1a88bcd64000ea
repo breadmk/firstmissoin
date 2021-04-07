@@ -1,0 +1,9 @@
+let index ={
+	
+	init:function(){
+		$(".deleteOk").on("click",()=>{
+			$(this).parents('tr').find("#no").text()
+		});
+	}
+}
+index.init()

@@ -1,0 +1,8 @@
+package kr.co.board.mapper;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mappers
+public interface AdminMemberMapper {
+
+}

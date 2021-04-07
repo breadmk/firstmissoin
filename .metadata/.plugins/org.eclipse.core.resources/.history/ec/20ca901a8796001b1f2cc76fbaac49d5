@@ -1,0 +1,17 @@
+package kr.co.board.dto;
+
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Data
+@Getter
+@Setter
+public class BoardDTO {
+
+	private int no;
+	private String title,name,content,pwd;
+	
+	
+}

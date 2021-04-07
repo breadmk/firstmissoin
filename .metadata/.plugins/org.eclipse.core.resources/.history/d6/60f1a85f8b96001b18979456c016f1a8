@@ -1,0 +1,23 @@
+package kr.co.board.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import kr.co.board.dto.BoardDTO;
+
+@Mapper
+public interface BoardMapper {
+	
+	@Insert("insert into board(no,title,name,content,pwd,writedate) values(s_board.nextval,#{dto.title,jdbcType=VARCHAR},#{dto.name,jdbcType=VARCHAR},#{dto.content,jdbcType=VARCHAR},#{dto.pwd,jdbcType=VARCHAR},sysdate)")
+	int register(@Param("dto") BoardDTO dto);
+	
+	@Select("select * from board order by no desc")
+	List<BoardDTO> list();
+	
+	@Select("select * from board where no=#{param1}")
+	BoardDTO dto(int no);
+}

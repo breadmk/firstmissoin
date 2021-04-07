@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp" %>
-<style>
-	.container{margin: auto;}
-</style>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <div class="container">
 	<form method="post">

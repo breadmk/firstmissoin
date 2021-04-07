@@ -1,0 +1,12 @@
+let index={
+	
+	init:function(){
+		$("#chk").on("click",()=>{
+			this.chk();
+		});
+	},
+	chk:function(){
+		alert("dd");
+	}	
+}
+index.init();

@@ -1,0 +1,5 @@
+function deleteOk(){
+	
+	let no = $("this").parents('tr').find("#no").text();
+	console.log(no)l;
+}

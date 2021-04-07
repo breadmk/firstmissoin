@@ -1,0 +1,12 @@
+package kr.co.board.dto;
+
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class MemberDTO {
+
+	private int no;
+	private String userid,username,pwd,email;
+}
