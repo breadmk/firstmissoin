@@ -39,6 +39,9 @@
     	</c:when>
     	<c:otherwise>
 		<ul class="navbar-nav">
+			<c:if test="${userid eq 'admin'}">
+			<li class="nav-item"><a class="nav-link" href="/member/admin">관리자페이지</a></li>
+			</c:if>
 		  <li class="nav-item"><a class="nav-link" href="/board/register">글쓰기</a></li>
 	      <li class="nav-item"><a class="nav-link" href="/member/userdetail">회원정보</a></li>
 	      <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>

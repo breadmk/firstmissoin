@@ -1,5 +1,7 @@
 package kr.co.board.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fasterxml.jackson.databind.node.IntNode;
@@ -33,24 +36,21 @@ public class BoardController {
 		}
 	}
 	
-	@RequestMapping("/board/update")
-	public String Update(HttpServletRequest request,Model model) {
-		int no = Integer.parseInt(request.getParameter("no"));
+	@RequestMapping("/board/update/{no}")
+	public String Update(@PathVariable int no, Model model) {
 		BoardDTO dto = boardMapper.getOne(no);
 		model.addAttribute("dto",dto);
 		return "/board/update";
 	}
 	
-	@RequestMapping("/board/deleteOk")
-	public String deleteOk(HttpServletRequest request) {
-		int no = Integer.parseInt(request.getParameter("no"));
+	@RequestMapping("/board/deleteOk/{no}")
+	public String deleteOk(@PathVariable int no) {
 		boardMapper.deleteOk(no);
 		return "redirect:/list";
 	}
 	
-	@RequestMapping("/board/content")
-	public String content(HttpServletRequest request,Model model) {
-		int no = Integer.parseInt(request.getParameter("no"));
+	@RequestMapping("/board/content/{no}")
+	public String content(@PathVariable int no,Model model) {
 		BoardDTO dto = boardMapper.getOne(no);
 		model.addAttribute("dto",dto);
 		return "/board/content";
@@ -68,8 +68,18 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/list")
-	public String index(Model model) {
-		List<BoardDTO> list = boardMapper.getAll();
+	public String index(Model model,HttpServletRequest request) {
+		String searchOption = request.getParameter("searchOption");
+		String keyword = request.getParameter("keyword");
+		HashMap<String, String> search = new HashMap<>();
+		search.put(searchOption, keyword);
+		List<BoardDTO> list = new ArrayList<>();
+		if(search.get(searchOption)==null)
+			list = boardMapper.getAll("where name like","");
+		else if (searchOption.equals("name"))
+			list = boardMapper.getAll("where name like", keyword);
+		else if (searchOption.equals("title"))
+			list = boardMapper.getAll("where title like", keyword);
 		model.addAttribute("list",list);
 		return "/board/list";
 	}

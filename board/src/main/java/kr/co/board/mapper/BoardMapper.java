@@ -17,8 +17,8 @@ public interface BoardMapper {
 	@Insert("insert into board(no,title,name,content,pwd,writedate) values(s_board.nextval,#{dto.title,jdbcType=VARCHAR},#{dto.name,jdbcType=VARCHAR},#{dto.content,jdbcType=VARCHAR},#{dto.pwd,jdbcType=VARCHAR},sysdate)")
 	int register(@Param("dto") BoardDTO dto);
 	
-	@Select("select * from board order by no desc")
-	List<BoardDTO> getAll();
+	@Select("select no,title,name,writedate from board ${where} '%${keyword}%' order by no asc")
+	List<BoardDTO> getAll(@Param("where")String where, @Param("keyword")String keyword);
 	
 	@Select("select * from board where no=#{param1}")
 	BoardDTO getOne(int no);

@@ -1,9 +1,11 @@
 package kr.co.board.controller;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionBindingListener;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.board.dto.MemberBoardDTO;
 import kr.co.board.dto.MemberDTO;
 import kr.co.board.mapper.MemberMapper;
 
@@ -22,10 +25,36 @@ public class MemberController {
 	@Autowired
 	MemberMapper memberMapper;
 	
+	@RequestMapping("/member/admin")
+	public String admin(Model model) {
+	   List<MemberBoardDTO> list = memberMapper.getAll();
+	   System.out.println(list);
+	   model.addAttribute("list",list);
+	   return "/member/memberlist";
+	}
+	
+	@RequestMapping("/member/pwdChkOk")
+	public void pwdChkOk(@RequestBody String pwd,PrintWriter out,HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		String pwdOk = (String) session.getAttribute("pwdOk");
+		if(pwdOk!=null) {
+			memberMapper.updatePwd(pwd, userid);
+			out.print("비밀번호가 변경되었습니다");
+		}else {
+			out.print("기존비밀번호를 확인하세요");
+		}
+	}
+	
 	@RequestMapping("/member/pwdChk")
-	public void pwdChk(@RequestBody String pwd,PrintWriter out) {
-		System.out.println(pwd);
-		out.write("dd");
+	public void pwdChk(@RequestBody String pwd,PrintWriter out,HttpSession session) {
+		String userid = (String) session.getAttribute("userid");
+		int count = memberMapper.login(userid, pwd);
+		if(count==1) {
+			out.write("비밀번호가 일치합니다.");
+			session.setAttribute("pwdOk", "1");
+		}else {
+			out.write("비밀번호가 틀립니다.");
+		}
 	}
 	
 	@RequestMapping("/member/userdetail")

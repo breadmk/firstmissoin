@@ -15,18 +15,17 @@
       </tr>
        <tr>
         <th>Email</th>
-        <td colspan="2">${dto.email}</td>
+        <td colspan="2">${dto.email}${pwdOk}</td>
       </tr>
        <tr>
-       <form>
         <th>기존비밀번호</th>
-        <td colspan="2"><input type="password" class="form-control" id="pwd" name="pwd"></td>
+        <td><input type="password" class="form-control" id="pwd" name="pwd"></td>
+      	<td><button id="chk">비밀번호확인</button></td>
       </tr>
       <tr>
       	<th>변경할 비밀번호</th>
-      	<td><input type="text" class="form-control" id="pwd2" name="pwd"></td>
-      </form>
-      	<td><button id="chk">비밀번호변경</button></td>
+      	<td><input type="password" class="form-control" id="pwd2" name="pwd"></td>
+      	<td><button id="chk2">비밀번호변경</button></td>
       </tr>
     </thead>
   </table>

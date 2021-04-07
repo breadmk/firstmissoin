@@ -26,7 +26,17 @@
       </tr>
      </c:forEach>
      <tr>
-     	<td colspan="4"><button type="button" class="btn btn-dark" id="register">글쓰기</button></td>
+     	<td colspan="1"><button type="button" class="btn btn-dark" id="register">글쓰기</button></td>
+     	<td colspan="3">
+     		<form method="post" action="list">
+		 <select name="searchOption">
+			<option value="name">작성자</option>
+			<option value="title">제목</option>
+		 </select>
+		<input type="text" name="keyword">
+		<input type="submit" value="검색">
+	</form>
+     	</td>
      </tr>
     </tbody>
   </table>
